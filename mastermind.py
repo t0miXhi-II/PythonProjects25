@@ -17,6 +17,7 @@ player2 = {
 def main():
     while True:
         game_round()
+        print()
         user_response = input("Press ENTER to continue or Q to quit game ").lower()
         if user_response == "q":
             break
