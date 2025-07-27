@@ -38,11 +38,10 @@ def game_round():
         player2["number_of_guesses"] += 1
 
         for p1_number in player1["selected_number"]:
-            for p2_number in player2_guess:
-                if p1_number == p2_number:
-                    guess = guess + p1_number
-                else:
-                    guess = guess + "_"
+            if p1_number in player2_guess:
+                guess = guess + p1_number
+            else:
+                guess = guess + "_"
         
         print(guess)
 
@@ -64,12 +63,13 @@ def game_round():
             player1_guess = input(f"{player1['name']} Guess the Number: ")
             player1["number_of_guesses"] += 1
 
-            for p1_number in player2["selected_number"]:
-                for p2_number in player1_guess:
-                    if p1_number == p2_number:
-                        guess = guess + p1_number
-                    else:
-                        guess = guess + "_"
+            for p2_number in player2["selected_number"]:
+                if p2_number in player1_guess:
+                    guess = guess + p2_number
+                else:
+                    guess = guess + "_"
+
+
             print(guess)
 
             if player2["selected_number"] == player1_guess:
