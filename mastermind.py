@@ -1,5 +1,9 @@
 import random
 
+'''
+:Possible Update: Add user input validation to ensure that the entered numbers by the players is a 4-digit number
+'''
+
 player1 = {
     "name": None,
     "selected_number": None,
@@ -18,10 +22,11 @@ def main():
     while True:
         game_round()
         print()
-        user_response = input("Press ENTER to continue or Q to quit game ").lower()
+        user_response = input("Press ENTER to continue or Q to quit game: ").lower()
         if user_response == "q":
             break
     check_winner(player1["number_of_round_wins"], player2["number_of_round_wins"])
+    
 
 
 def game_round():
@@ -74,20 +79,25 @@ def game_round():
 
             if player2["selected_number"] == player1_guess:
                 print(f"Correct {player1['name']}!!! You guessed the correct number! - {player1_guess}")
-                player1["number_of_round_wins"] += 1
                 print()
                 break
 
-            
-
-    
+        if player1["number_of_guesses"] < player2["number_of_guesses"]:
+            player1["number_of_round_wins"] += 1
+            print(f"{player1['name']} wins this round!")
+        elif player2["number_of_guesses"] < player1["number_of_guesses"]:
+            player2["number_of_round_wins"] += 1
+            print(f"{player2['name']} wins this round!")
+        else:
+            print("It's a tie!")
+        break
 
 
 def check_winner(player1_attempts: int, player2_attempts: int):
     if player1_attempts > player2_attempts:
-        print("Player 1 wins!!!")
+        print("Player 1 wins the game!!!")
     elif player2_attempts > player1_attempts:
-        print("Player 2 wins!!!")
+        print("Player 2 wins the game!!!")
     else:
         print("Draw!!! It's a tie.")
 
